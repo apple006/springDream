@@ -5,7 +5,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
 import com.imesong.springdream.utils.UpdateUtil;
 import com.mikepenz.fontawesome_typeface_library.FontAwesome;
@@ -15,12 +14,24 @@ import com.mikepenz.materialdrawer.model.DividerDrawerItem;
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
 import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
 import com.mikepenz.materialdrawer.model.SectionDrawerItem;
-import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 
 public class MainActivity extends BaseActivity {
 
-    private PrimaryDrawerItem item1 ;
-    private SecondaryDrawerItem item2;
+    private PrimaryDrawerItem category ;
+    private SecondaryDrawerItem mPersionCategory;
+    private SecondaryDrawerItem mActiveCategory;
+    private SecondaryDrawerItem mPlantCategoy;
+    private SecondaryDrawerItem mWoodCategory;
+    private SecondaryDrawerItem mAnimalCategory;
+    private SecondaryDrawerItem mLifeCategoy;
+    private SecondaryDrawerItem mNatureCategory;
+    private SecondaryDrawerItem mGhostCategory;
+    private SecondaryDrawerItem mStructureCategory;
+    private SecondaryDrawerItem mOtherCategory;
+    private SecondaryDrawerItem mPregnantCategory;
+    private DividerDrawerItem mDividerDrawerItem;
+
+
     private Drawer mLeftDrawer ;
     private Drawer mRightDrawer;
 
@@ -40,15 +51,48 @@ public class MainActivity extends BaseActivity {
 
     private void initDrawer(Toolbar toolbar){
 
-        item1 = new PrimaryDrawerItem().withName(R.string.item1);
-        item2 = new SecondaryDrawerItem().withName(R.string.item2);
+        category = new PrimaryDrawerItem().withName(R.string.category_dreams);
+
+        mPersionCategory = new SecondaryDrawerItem().withName(R.string.category_persons);
+        mAnimalCategory = new SecondaryDrawerItem().withName(R.string.category_animal);
+        mPlantCategoy = new SecondaryDrawerItem().withName(R.string.category_plant);
+        mWoodCategory = new SecondaryDrawerItem().withName(R.string.category_woods);
+        mActiveCategory = new SecondaryDrawerItem().withName(R.string.category_active);
+        mLifeCategoy = new SecondaryDrawerItem().withName(R.string.category_life);
+        mNatureCategory = new SecondaryDrawerItem().withName(R.string.category_nature);
+        mGhostCategory = new SecondaryDrawerItem().withName(R.string.category_ghost);
+        mStructureCategory = new SecondaryDrawerItem().withName(R.string.category_structure);
+        mOtherCategory = new SecondaryDrawerItem().withName(R.string.category_others);
+        mPregnantCategory = new SecondaryDrawerItem().withName(R.string.category_pregnant);
+
+        mDividerDrawerItem = new DividerDrawerItem();
+
+
         mLeftDrawer = new DrawerBuilder().withActivity(this).withToolbar(toolbar).
-            addDrawerItems(item1,new DividerDrawerItem(),item2,new SecondaryDrawerItem().withName(R.string.item3)).withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
-            @Override
-            public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
-                return false;
-            }
-        }).build();
+            addDrawerItems(category,
+                mDividerDrawerItem,
+                mPersionCategory,
+                mDividerDrawerItem,
+                mAnimalCategory,
+                mDividerDrawerItem,
+                mPlantCategoy,
+                mDividerDrawerItem,
+                mWoodCategory,
+                mDividerDrawerItem,
+                mActiveCategory,
+                mDividerDrawerItem,
+                mLifeCategoy,
+                mDividerDrawerItem,
+                mNatureCategory,
+                mDividerDrawerItem,
+                mGhostCategory,
+                mDividerDrawerItem,
+                mStructureCategory,
+                mDividerDrawerItem,
+                mOtherCategory,
+                mDividerDrawerItem,
+                mPregnantCategory
+                ).build();
 
 
 
@@ -74,24 +118,8 @@ public class MainActivity extends BaseActivity {
 
         //set the back arrow in the toolbar
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeButtonEnabled(false);
 
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
