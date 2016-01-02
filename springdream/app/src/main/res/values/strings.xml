@@ -1,4 +1,19 @@
 <resources>
     <string name="app_name">springdream</string>
     <string name="action_settings">Settings</string>
+    <string name="item1">item1</string>
+    <string name="item2">item2</string>
+    <string name="item3">item3</string>
+    <string name="item4">item4</string>
+
+
+    <string name="right_item1">right_item1</string>
+    <string name="right_item2">right_item2</string>
+    <string name="right_item3">right_item3</string>
+    <string name="right_item4">right_item4</string>
+
+    <string name="right_item5">right_item5</string>
+    <string name="right_item6">right_item6</string>
+    <string name="right_item7">right_item7</string>
+    <string name="right_item8">right_item8</string>
 </resources>
