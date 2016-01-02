@@ -58,6 +58,8 @@ dependencies {
     compile(name: 'umengsocialshare-release', ext: 'aar')
 
     compile(name: 'umengupdatelib-release', ext: 'aar')
+    //友盟反馈
+    compile 'com.umeng:fb:5.4.0'
 
     //greeenDAO
     compile 'de.greenrobot:greendao:2.0.0'
