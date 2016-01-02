@@ -57,6 +57,8 @@ dependencies {
     }
     compile(name: 'umengsocialshare-release', ext: 'aar')
 
+    compile(name: 'umengupdatelib-release', ext: 'aar')
+
     //greeenDAO
     compile 'de.greenrobot:greendao:2.0.0'
 
