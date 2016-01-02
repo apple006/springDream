@@ -63,6 +63,8 @@ dependencies {
 
     //greeenDAO
     compile 'de.greenrobot:greendao:2.0.0'
+    //gson
+    compile 'com.google.code.gson:gson:2.5'
 
     //icon
     compile 'com.mikepenz:fontawesome-typeface:4.5.0.1@aar'
