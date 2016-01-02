@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.imesong.springdream.utils.UpdateUtil;
 import com.mikepenz.fontawesome_typeface_library.FontAwesome;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
@@ -32,7 +33,7 @@ public class MainActivity extends BaseActivity {
 
 
         initDrawer(toolbar);
-
+        UpdateUtil.update(this);
 
     }
 
