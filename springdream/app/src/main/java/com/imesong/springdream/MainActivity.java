@@ -6,16 +6,19 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
-import android.view.Gravity;
 
 import com.imesong.springdream.utils.UpdateUtil;
 import com.mikepenz.fontawesome_typeface_library.FontAwesome;
+import com.mikepenz.materialdrawer.AccountHeader;
+import com.mikepenz.materialdrawer.AccountHeaderBuilder;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
 import com.mikepenz.materialdrawer.model.DividerDrawerItem;
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
+import com.mikepenz.materialdrawer.model.ProfileDrawerItem;
 import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
 import com.mikepenz.materialdrawer.model.SectionDrawerItem;
+import com.mikepenz.materialdrawer.model.interfaces.IProfile;
 
 public class MainActivity extends BaseActivity {
 
@@ -23,23 +26,8 @@ public class MainActivity extends BaseActivity {
     private static String[] categoryDreams;
     private com.astuetz.PagerSlidingTabStrip tabStrip;
     private FragmentManager fragmentManager;
-
-
-    private PrimaryDrawerItem category;
-    private SecondaryDrawerItem mPersionCategory;
-    private SecondaryDrawerItem mActiveCategory;
-    private SecondaryDrawerItem mPlantCategoy;
-    private SecondaryDrawerItem mWoodCategory;
-    private SecondaryDrawerItem mAnimalCategory;
-    private SecondaryDrawerItem mLifeCategoy;
-    private SecondaryDrawerItem mNatureCategory;
-    private SecondaryDrawerItem mGhostCategory;
-    private SecondaryDrawerItem mStructureCategory;
-    private SecondaryDrawerItem mOtherCategory;
-    private SecondaryDrawerItem mPregnantCategory;
-    private DividerDrawerItem mDividerDrawerItem;
-
-
+    private AccountHeader headerResult = null;
+    public  static int PROFILE_SETTING = 1;
     private Drawer mLeftDrawer;
     private Drawer mRightDrawer;
 
@@ -51,8 +39,7 @@ public class MainActivity extends BaseActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
-        initDrawer(toolbar);
+        initDrawer(savedInstanceState);
         UpdateUtil.update(this);
 
         initViewPager();
@@ -61,57 +48,28 @@ public class MainActivity extends BaseActivity {
     }
 
 
-    private void initDrawer(Toolbar toolbar) {
-
-        category = new PrimaryDrawerItem().withName(R.string.category_dreams);
-
-        mPersionCategory = new SecondaryDrawerItem().withName(R.string.category_persons);
-        mAnimalCategory = new SecondaryDrawerItem().withName(R.string.category_animal);
-        mPlantCategoy = new SecondaryDrawerItem().withName(R.string.category_plant);
-        mWoodCategory = new SecondaryDrawerItem().withName(R.string.category_woods);
-        mActiveCategory = new SecondaryDrawerItem().withName(R.string.category_active);
-        mLifeCategoy = new SecondaryDrawerItem().withName(R.string.category_life);
-        mNatureCategory = new SecondaryDrawerItem().withName(R.string.category_nature);
-        mGhostCategory = new SecondaryDrawerItem().withName(R.string.category_ghost);
-        mStructureCategory = new SecondaryDrawerItem().withName(R.string.category_structure);
-        mOtherCategory = new SecondaryDrawerItem().withName(R.string.category_others);
-        mPregnantCategory = new SecondaryDrawerItem().withName(R.string.category_pregnant);
-
-        mDividerDrawerItem = new DividerDrawerItem();
+    private void initDrawer(Bundle savedInstanceState) {
+        final IProfile profile3 = new ProfileDrawerItem().withName("imesong").withEmail("imesong@126.com").withIcon(R.drawable.profile2).withIdentifier(102);
+        // Create the AccountHeader
+        headerResult = new AccountHeaderBuilder()
+            .withActivity(this)
+            .withHeaderBackground(R.drawable.header)
+            .addProfiles(profile3)
+//            .withOnAccountHeaderListener(new AccountHeader.OnAccountHeaderListener() {
+//                @Override
+//                public boolean onProfileChanged(View view, IProfile profile, boolean current) {
+//                    return true;
+//                }
+//            })
+            .withSavedInstance(savedInstanceState)
+            .build();
 
 
-        mLeftDrawer = new DrawerBuilder().withActivity(this).withToolbar(toolbar).
-            addDrawerItems(category,
-                mDividerDrawerItem,
-                mPersionCategory,
-                mDividerDrawerItem,
-                mAnimalCategory,
-                mDividerDrawerItem,
-                mPlantCategoy,
-                mDividerDrawerItem,
-                mWoodCategory,
-                mDividerDrawerItem,
-                mActiveCategory,
-                mDividerDrawerItem,
-                mLifeCategoy,
-                mDividerDrawerItem,
-                mNatureCategory,
-                mDividerDrawerItem,
-                mGhostCategory,
-                mDividerDrawerItem,
-                mStructureCategory,
-                mDividerDrawerItem,
-                mOtherCategory,
-                mDividerDrawerItem,
-                mPregnantCategory
-            ).build();
 
-
-        //now we add the second drawer on the other site.
-        //use the .append method to add this drawer to the first one
-        mRightDrawer = new DrawerBuilder()
+        mLeftDrawer = new DrawerBuilder()
             .withActivity(this)
             .withDisplayBelowStatusBar(true)
+            .withAccountHeader(headerResult)
             .addDrawerItems(
                 new PrimaryDrawerItem().withName(R.string.right_item1).withIcon(FontAwesome.Icon.faw_eye),
                 new PrimaryDrawerItem().withName(R.string.right_item2).withIcon(FontAwesome.Icon.faw_home),
@@ -120,24 +78,15 @@ public class MainActivity extends BaseActivity {
                 new SecondaryDrawerItem().withName(R.string.right_item5).withIcon(FontAwesome.Icon.faw_cog),
                 new DividerDrawerItem(),
                 new SecondaryDrawerItem().withName(R.string.right_item6).withIcon(FontAwesome.Icon.faw_github),
-                new SecondaryDrawerItem().withName(R.string.right_item7).withIcon(FontAwesome.Icon.faw_question).withEnabled(false),
-                new SectionDrawerItem().withName(R.string.right_item8)
+                new SecondaryDrawerItem().withName(R.string.right_item7).withIcon(FontAwesome.Icon.faw_question)
             )
-            .withDrawerGravity(Gravity.END)
-            .append(mLeftDrawer);
-
-
-        //set the back arrow in the toolbar
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
+            .withSavedInstance(savedInstanceState)
+            .build();
     }
 
 
     private void initViewPager() {
         categoryDreams = getResources().getStringArray(R.array.category_dreams);
-
-
-
         fragmentManager = getSupportFragmentManager();
 
         viewPager = (ViewPager)findViewById(R.id.view_pager);
@@ -162,7 +111,7 @@ public class MainActivity extends BaseActivity {
 
         @Override
         public int getCount() {
-            return categoryDreams.length-1;
+            return categoryDreams.length;
         }
 
 

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="category_dreams">
-        <item name="category_dreams">分类梦境</item>
         <item name="category_persons">人物篇</item>
         <item name="category_animal">动物篇</item>
         <item name="category_plant">植物篇</item>
