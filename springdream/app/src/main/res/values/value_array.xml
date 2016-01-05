@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="category_dreams">
+        <item name="category_dreams">分类梦境</item>
+        <item name="category_persons">人物篇</item>
+        <item name="category_animal">动物篇</item>
+        <item name="category_plant">植物篇</item>
+        <item name="category_woods">物品篇</item>
+        <item name="category_active">活动篇</item>
+        <item name="category_life">生活篇</item>
+        <item name="category_nature">自然篇</item>
+        <item name="category_ghost">鬼神篇</item>
+        <item name="category_structure">建筑篇</item>
+        <item name="category_others">其他篇</item>
+        <item name="category_pregnant">孕妇解梦</item>
+    </string-array>
+</resources>

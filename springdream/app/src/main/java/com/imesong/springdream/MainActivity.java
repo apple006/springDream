@@ -1,10 +1,12 @@
 package com.imesong.springdream;
 
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
-import android.view.Menu;
-import android.view.MenuItem;
 
 import com.imesong.springdream.utils.UpdateUtil;
 import com.mikepenz.fontawesome_typeface_library.FontAwesome;
@@ -17,7 +19,13 @@ import com.mikepenz.materialdrawer.model.SectionDrawerItem;
 
 public class MainActivity extends BaseActivity {
 
-    private PrimaryDrawerItem category ;
+    private ViewPager viewPager;
+    private static String[] categoryDreams;
+    private com.astuetz.PagerSlidingTabStrip tabStrip;
+    private FragmentManager fragmentManager;
+
+
+    private PrimaryDrawerItem category;
     private SecondaryDrawerItem mPersionCategory;
     private SecondaryDrawerItem mActiveCategory;
     private SecondaryDrawerItem mPlantCategoy;
@@ -32,8 +40,9 @@ public class MainActivity extends BaseActivity {
     private DividerDrawerItem mDividerDrawerItem;
 
 
-    private Drawer mLeftDrawer ;
+    private Drawer mLeftDrawer;
     private Drawer mRightDrawer;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,10 +55,13 @@ public class MainActivity extends BaseActivity {
         initDrawer(toolbar);
         UpdateUtil.update(this);
 
+        initViewPager();
+
+
     }
 
 
-    private void initDrawer(Toolbar toolbar){
+    private void initDrawer(Toolbar toolbar) {
 
         category = new PrimaryDrawerItem().withName(R.string.category_dreams);
 
@@ -92,8 +104,7 @@ public class MainActivity extends BaseActivity {
                 mOtherCategory,
                 mDividerDrawerItem,
                 mPregnantCategory
-                ).build();
-
+            ).build();
 
 
         //now we add the second drawer on the other site.
@@ -122,31 +133,48 @@ public class MainActivity extends BaseActivity {
     }
 
 
+    private void initViewPager() {
+        categoryDreams = getResources().getStringArray(R.array.category_dreams);
 
 
 
+        fragmentManager = getSupportFragmentManager();
 
+        viewPager = (ViewPager)findViewById(R.id.view_pager);
+        viewPager.setAdapter(new CategoryAdapter(fragmentManager));
+        viewPager.setOffscreenPageLimit(categoryDreams.length);
 
+        tabStrip = (com.astuetz.PagerSlidingTabStrip)findViewById(R.id.tab_strip);
+        tabStrip.setViewPager(viewPager);
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+    class CategoryAdapter extends FragmentStatePagerAdapter {
+        @Override
+        public Fragment getItem(int position) {
+            Bundle bundle = new Bundle();
+            bundle.putString(CategoryListFragment.CATEGORY_NAME, categoryDreams[position]);
+            bundle.putString(CategoryListFragment.CATEGORY_ID, position + "");
+
+            return  CategoryListFragment.getInstance(bundle);
         }
 
-        return super.onOptionsItemSelected(item);
+        @Override
+        public int getCount() {
+            return categoryDreams.length-1;
+        }
+
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return categoryDreams[position];
+        }
+
+        public CategoryAdapter(FragmentManager fm) {
+            super(fm);
+        }
     }
+
+
 }
