@@ -27,7 +27,7 @@ public class MainActivity extends BaseActivity {
     private com.astuetz.PagerSlidingTabStrip tabStrip;
     private FragmentManager fragmentManager;
     private AccountHeader headerResult = null;
-    public  static int PROFILE_SETTING = 1;
+    public static int PROFILE_SETTING = 1;
     private Drawer mLeftDrawer;
     private Drawer mRightDrawer;
 
@@ -49,22 +49,14 @@ public class MainActivity extends BaseActivity {
 
 
     private void initDrawer(Bundle savedInstanceState) {
-        final IProfile profile3 = new ProfileDrawerItem().withName("imesong").withEmail("imesong@126.com").withIcon(R.drawable.profile2).withIdentifier(102);
+        final IProfile profile3 = new ProfileDrawerItem().withName("imesong").withIcon(R.drawable.profile2).withIdentifier(102);
         // Create the AccountHeader
         headerResult = new AccountHeaderBuilder()
             .withActivity(this)
             .withHeaderBackground(R.drawable.header)
             .addProfiles(profile3)
-//            .withOnAccountHeaderListener(new AccountHeader.OnAccountHeaderListener() {
-//                @Override
-//                public boolean onProfileChanged(View view, IProfile profile, boolean current) {
-//                    return true;
-//                }
-//            })
             .withSavedInstance(savedInstanceState)
             .build();
-
-
 
         mLeftDrawer = new DrawerBuilder()
             .withActivity(this)
@@ -89,11 +81,11 @@ public class MainActivity extends BaseActivity {
         categoryDreams = getResources().getStringArray(R.array.category_dreams);
         fragmentManager = getSupportFragmentManager();
 
-        viewPager = (ViewPager)findViewById(R.id.view_pager);
+        viewPager = (ViewPager) findViewById(R.id.view_pager);
         viewPager.setAdapter(new CategoryAdapter(fragmentManager));
         viewPager.setOffscreenPageLimit(categoryDreams.length);
 
-        tabStrip = (com.astuetz.PagerSlidingTabStrip)findViewById(R.id.tab_strip);
+        tabStrip = (com.astuetz.PagerSlidingTabStrip) findViewById(R.id.tab_strip);
         tabStrip.setViewPager(viewPager);
 
     }
@@ -106,7 +98,7 @@ public class MainActivity extends BaseActivity {
             bundle.putString(CategoryListFragment.CATEGORY_NAME, categoryDreams[position]);
             bundle.putString(CategoryListFragment.CATEGORY_ID, position + "");
 
-            return  CategoryListFragment.getInstance(bundle);
+            return CategoryListFragment.getInstance(bundle);
         }
 
         @Override
