@@ -20,5 +20,11 @@ public class EventAgentUtil {
     }
 
 
+    public static void reportError(Context context,String errorInfo){
+        MobclickAgent.reportError(context, errorInfo);
+    }
 
+    public static void reportError(Context context,Throwable throwable){
+        MobclickAgent.reportError(context,throwable);
+    }
 }
