@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 
+import com.flyco.tablayout.SlidingTabLayout;
 import com.imesong.springdream.utils.UpdateUtil;
 import com.mikepenz.fontawesome_typeface_library.FontAwesome;
 import com.mikepenz.materialdrawer.AccountHeader;
@@ -24,7 +25,7 @@ public class MainActivity extends BaseActivity {
 
     private ViewPager viewPager;
     private static String[] categoryDreams;
-    private com.astuetz.PagerSlidingTabStrip tabStrip;
+    private SlidingTabLayout tabStrip;
     private FragmentManager fragmentManager;
     private AccountHeader headerResult = null;
     public static int PROFILE_SETTING = 1;
@@ -85,7 +86,7 @@ public class MainActivity extends BaseActivity {
         viewPager.setAdapter(new CategoryAdapter(fragmentManager));
         viewPager.setOffscreenPageLimit(categoryDreams.length);
 
-        tabStrip = (com.astuetz.PagerSlidingTabStrip) findViewById(R.id.tab_strip);
+        tabStrip = (SlidingTabLayout) findViewById(R.id.tab_strip);
         tabStrip.setViewPager(viewPager);
 
     }
