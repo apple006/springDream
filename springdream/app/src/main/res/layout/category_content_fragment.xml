@@ -1,5 +1,7 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout
     android:id="@+id/content_layout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tl="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -8,11 +10,32 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-
         <com.flyco.tablayout.SlidingTabLayout
             android:id="@+id/tab_strip"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/tab_strip_height"></com.flyco.tablayout.SlidingTabLayout>
+            android:layout_height="@dimen/tab_strip_height"
+            android:background="@color/tab_strip_bg_normal"
+
+            tl:tl_divider_color="@color/tab_strip_bg_selected"
+            tl:tl_divider_padding="@dimen/tab_strip_divider_padding_top_bottom"
+            tl:tl_divider_width="@dimen/tab_strip_divider_hegiht"
+            tl:tl_indicator_color="@color/tab_strip_bg_selected"
+            tl:tl_indicator_height="@dimen/tab_strip_indicator_height"
+            tl:tl_indicator_margin_top="@dimen/tab_strip_indicatior_margin_top"
+
+            tl:tl_indicator_width_equal_title="false"
+            tl:tl_tab_padding="22dp"
+            tl:tl_textAllCaps="true"
+
+            tl:tl_textBold="false"
+            tl:tl_textSelectColor="@color/md_blue_800"
+
+            tl:tl_textUnselectColor="@color/tab_strip_text_normal"
+            tl:tl_textsize="@dimen/tab_strip_text_size"
+            tl:tl_underline_color="@color/tab_strip_bg_normal"
+            tl:tl_underline_height="@dimen/tab_strip_line_hegiht"
+
+            ></com.flyco.tablayout.SlidingTabLayout>
 
         <android.support.v4.view.ViewPager
             android:id="@+id/view_pager"
