@@ -15,14 +15,17 @@ import java.io.OutputStream;
  * 读取assets 数据库工具类
  */
 public class AssetsDatabaseManager {
-    private static String tag = "AssetsDatabase"; // for LogCat
+    public static final String DB_NAME = "zhgjm.sqlite";
+    private static String tag = "AssetsDatabaseManager"; // for LogCat
     private static String databasepath = "/data/data/%s/database"; // %s is packageName
-    public static final String DB_NAME = "zhgjm";
+    // Singleton Pattern
+    private static AssetsDatabaseManager mInstance = null;
     // Context of application
     private Context context = null;
 
-    // Singleton Pattern
-    private static AssetsDatabaseManager mInstance = null;
+    private AssetsDatabaseManager(Context context) {
+        this.context = context;
+    }
 
     /**
      * Initialize AssetsDatabaseManager
@@ -34,11 +37,6 @@ public class AssetsDatabaseManager {
             mInstance = new AssetsDatabaseManager(context);
         }
         return mInstance;
-    }
-
-
-    private AssetsDatabaseManager(Context context) {
-        this.context = context;
     }
 
     /**
@@ -81,7 +79,7 @@ public class AssetsDatabaseManager {
     }
 
     private boolean copyAssetsToFilesystem(String assetsSrc, String des) {
-        Log.i(tag, "Copy " + assetsSrc + " to " + des);
+        Log.i(tag, "copyAssetsToFilesystem " + assetsSrc + " to " + des);
         InputStream istream = null;
         OutputStream ostream = null;
         try {

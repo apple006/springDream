@@ -5,6 +5,8 @@ import android.app.Application;
 import com.imesong.springdream.utils.FlashFlowUtil;
 import com.squareup.leakcanary.LeakCanary;
 
+import cn.zhaiyifan.init.Init;
+
 /**
  * MainApplication for SpringDream
  * block task should not do here
@@ -19,5 +21,6 @@ public class SpringApplication extends Application {
     }
     private void initThirdLib(){
         LeakCanary.install(this);
+        Init.init(this);
     }
 }

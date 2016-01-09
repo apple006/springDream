@@ -19,6 +19,7 @@ public class FlashFlowUtil {
     private static String TAG = "FlashFlowUtil";
     private static HashMap<String, Flow> flowHashMap = new HashMap<>();
 
+
     public static Flow getFlashFlow(String flowTag) {
         Flow flow = null;
         if (flowTag != null) {
@@ -38,7 +39,7 @@ public class FlashFlowUtil {
             protected void start() {
 
                 try {
-                    AssetsDatabaseManager.getInstance(context.getApplicationContext()).initLoacalDatabase(AssetsDatabaseManager.DB_NAME);
+                    AssetsDatabaseManager.getInstance(context).initLoacalDatabase(AssetsDatabaseManager.DB_NAME);
                 } catch (NoSuchFieldException e) {
                     e.printStackTrace();
                     EventAgentUtil.reportError(context, e);
