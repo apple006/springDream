@@ -10,7 +10,7 @@
         <item name="category_nature">自然</item>
         <item name="category_ghost">鬼神</item>
         <item name="category_structure">建筑</item>
-        <item name="category_others">其他</item>
         <item name="category_pregnant">孕妇解梦</item>
+        <item name="category_others">其他</item>
     </string-array>
 </resources>
