@@ -5,7 +5,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.widget.Toolbar;
 
 import com.flyco.tablayout.SlidingTabLayout;
 import com.imesong.springdream.utils.UpdateUtil;
@@ -30,16 +29,12 @@ public class MainActivity extends BaseActivity {
     private AccountHeader headerResult = null;
     public static int PROFILE_SETTING = 1;
     private Drawer mLeftDrawer;
-    private Drawer mRightDrawer;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
         initDrawer(savedInstanceState);
         UpdateUtil.update(this);
 
