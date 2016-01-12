@@ -13,7 +13,6 @@ import com.mikepenz.materialdrawer.AccountHeader;
 import com.mikepenz.materialdrawer.AccountHeaderBuilder;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
-import com.mikepenz.materialdrawer.model.DividerDrawerItem;
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
 import com.mikepenz.materialdrawer.model.ProfileDrawerItem;
 import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
@@ -22,12 +21,12 @@ import com.mikepenz.materialdrawer.model.interfaces.IProfile;
 
 public class MainActivity extends BaseActivity {
 
-    private ViewPager viewPager;
+    public static int PROFILE_SETTING = 1;
     private static String[] categoryDreams;
+    private ViewPager viewPager;
     private SlidingTabLayout tabStrip;
     private FragmentManager fragmentManager;
     private AccountHeader headerResult = null;
-    public static int PROFILE_SETTING = 1;
     private Drawer mLeftDrawer;
 
 
@@ -45,7 +44,7 @@ public class MainActivity extends BaseActivity {
 
 
     private void initDrawer(Bundle savedInstanceState) {
-        final IProfile profile3 = new ProfileDrawerItem().withName("imesong").withIcon(R.drawable.profile2).withIdentifier(102);
+        final IProfile profile3 = new ProfileDrawerItem().withName("imesong").withEmail("imesong@126.com").withIcon(R.drawable.profile2).withIdentifier(PROFILE_SETTING);
         // Create the AccountHeader
         headerResult = new AccountHeaderBuilder()
             .withActivity(this)
@@ -64,7 +63,6 @@ public class MainActivity extends BaseActivity {
                 new PrimaryDrawerItem().withName(R.string.right_item3).withIcon(FontAwesome.Icon.faw_gamepad),
                 new SectionDrawerItem().withName(R.string.right_item4),
                 new SecondaryDrawerItem().withName(R.string.right_item5).withIcon(FontAwesome.Icon.faw_cog),
-                new DividerDrawerItem(),
                 new SecondaryDrawerItem().withName(R.string.right_item6).withIcon(FontAwesome.Icon.faw_github),
                 new SecondaryDrawerItem().withName(R.string.right_item7).withIcon(FontAwesome.Icon.faw_question)
             )
@@ -88,6 +86,10 @@ public class MainActivity extends BaseActivity {
 
 
     class CategoryAdapter extends FragmentStatePagerAdapter {
+        public CategoryAdapter(FragmentManager fm) {
+            super(fm);
+        }
+
         @Override
         public Fragment getItem(int position) {
             Bundle bundle = new Bundle();
@@ -102,14 +104,9 @@ public class MainActivity extends BaseActivity {
             return categoryDreams.length;
         }
 
-
         @Override
         public CharSequence getPageTitle(int position) {
             return categoryDreams[position];
-        }
-
-        public CategoryAdapter(FragmentManager fm) {
-            super(fm);
         }
     }
 

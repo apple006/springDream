@@ -7,6 +7,13 @@
     android:fitsSystemWindows="true"
     android:orientation="vertical"
     tools:context="com.imesong.springdream.MainActivity">
+
+    <com.quinny898.library.persistentsearch.SearchBox
+        android:id="@+id/searchbox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+
     <include layout="@layout/category_content_fragment"></include>
 
 </LinearLayout>

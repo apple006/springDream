@@ -2,7 +2,7 @@
 buildscript {
     repositories {
         jcenter()
-
+        mavenCentral()
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:1.5.0'
@@ -15,8 +15,14 @@ buildscript {
 allprojects {
     repositories {
         jcenter()
-        //友盟反馈
+        mavenCentral()
+        maven {
+            url "https://oss.sonatype.org/content/repositories/snapshots"
+        }
+        //友盟反馈 可能有问题，多个maven 地址 ，如何制定
         maven { url "https://raw.githubusercontent.com/umeng/mvn-repo-umeng/master/repository" }
+
+
     }
 }
 
