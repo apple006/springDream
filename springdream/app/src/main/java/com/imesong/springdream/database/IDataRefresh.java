@@ -9,5 +9,4 @@ public interface IDataRefresh {
     public void randomRefreshData();
 
     public void getMoreData();
-
 }

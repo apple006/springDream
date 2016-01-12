@@ -1,11 +1,5 @@
 package com.imesong.springdream;
 
-import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentStatePagerAdapter;
-import android.support.v4.view.ViewPager;
-
 import com.flyco.tablayout.SlidingTabLayout;
 import com.imesong.springdream.utils.UpdateUtil;
 import com.mikepenz.fontawesome_typeface_library.FontAwesome;
@@ -18,6 +12,12 @@ import com.mikepenz.materialdrawer.model.ProfileDrawerItem;
 import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
 import com.mikepenz.materialdrawer.model.SectionDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IProfile;
+
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.view.ViewPager;
 
 public class MainActivity extends BaseActivity {
 
@@ -38,36 +38,41 @@ public class MainActivity extends BaseActivity {
         UpdateUtil.update(this);
 
         initViewPager();
-
-
     }
 
 
     private void initDrawer(Bundle savedInstanceState) {
-        final IProfile profile3 = new ProfileDrawerItem().withName("imesong").withEmail("imesong@126.com").withIcon(R.drawable.profile2).withIdentifier(PROFILE_SETTING);
+        final IProfile profile3 = new ProfileDrawerItem().withName("imesong").withEmail("imesong@126.com")
+                .withIcon(R.drawable.profile2).withIdentifier(PROFILE_SETTING);
         // Create the AccountHeader
         headerResult = new AccountHeaderBuilder()
-            .withActivity(this)
-            .withHeaderBackground(R.drawable.header)
-            .addProfiles(profile3)
-            .withSavedInstance(savedInstanceState)
-            .build();
+                .withActivity(this)
+                .withHeaderBackground(R.drawable.header)
+                .addProfiles(profile3)
+                .withSavedInstance(savedInstanceState)
+                .build();
 
         mLeftDrawer = new DrawerBuilder()
-            .withActivity(this)
-            .withDisplayBelowStatusBar(true)
-            .withAccountHeader(headerResult)
-            .addDrawerItems(
-                new PrimaryDrawerItem().withName(R.string.right_item1).withIcon(FontAwesome.Icon.faw_eye),
-                new PrimaryDrawerItem().withName(R.string.right_item2).withIcon(FontAwesome.Icon.faw_home),
-                new PrimaryDrawerItem().withName(R.string.right_item3).withIcon(FontAwesome.Icon.faw_gamepad),
-                new SectionDrawerItem().withName(R.string.right_item4),
-                new SecondaryDrawerItem().withName(R.string.right_item5).withIcon(FontAwesome.Icon.faw_cog),
-                new SecondaryDrawerItem().withName(R.string.right_item6).withIcon(FontAwesome.Icon.faw_github),
-                new SecondaryDrawerItem().withName(R.string.right_item7).withIcon(FontAwesome.Icon.faw_question)
-            )
-            .withSavedInstance(savedInstanceState)
-            .build();
+                .withActivity(this)
+                .withDisplayBelowStatusBar(true)
+                .withAccountHeader(headerResult)
+                .addDrawerItems(
+                        new PrimaryDrawerItem().withName(R.string.right_item1).withIcon(FontAwesome.Icon
+                                .faw_eye),
+                        new PrimaryDrawerItem().withName(R.string.right_item2).withIcon(FontAwesome.Icon
+                                .faw_home),
+                        new PrimaryDrawerItem().withName(R.string.right_item3).withIcon(FontAwesome.Icon
+                                .faw_gamepad),
+                        new SectionDrawerItem().withName(R.string.right_item4),
+                        new SecondaryDrawerItem().withName(R.string.right_item5).withIcon(FontAwesome.Icon
+                                .faw_cog),
+                        new SecondaryDrawerItem().withName(R.string.right_item6).withIcon(FontAwesome.Icon
+                                .faw_github),
+                        new SecondaryDrawerItem().withName(R.string.right_item7).withIcon(FontAwesome.Icon
+                                .faw_question)
+                )
+                .withSavedInstance(savedInstanceState)
+                .build();
     }
 
 
@@ -81,7 +86,6 @@ public class MainActivity extends BaseActivity {
 
         tabStrip = (SlidingTabLayout) findViewById(R.id.tab_strip);
         tabStrip.setViewPager(viewPager);
-
     }
 
 
@@ -109,6 +113,4 @@ public class MainActivity extends BaseActivity {
             return categoryDreams[position];
         }
     }
-
-
 }

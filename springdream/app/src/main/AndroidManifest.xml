@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest package="com.imesong.springdream"
-          xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.imesong.springdream">
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"></uses-permission>
     <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
     <uses-permission android:name="android.permission.INTERNET"></uses-permission>
-
-
 
     <application
         android:name=".SpringApplication"
@@ -35,21 +33,20 @@
         <!-- 友盟统计 key-->
         <meta-data
             android:name="UMENG_APPKEY"
-            android:value="5687799567e58e48b5001e5d" />
+            android:value="5687799567e58e48b5001e5d"/>
         <meta-data
             android:name="UMENG_CHANNEL"
-            android:value="UMENG_CHANNEL_VALUE" />
+            android:value="UMENG_CHANNEL_VALUE"/>
 
         <!-- 友盟自动更新-->
         <service
             android:name="com.umeng.update.net.DownloadingService"
-            android:process=":DownloadingService" >
+            android:process=":DownloadingService">
         </service>
         <activity
             android:name="com.umeng.update.UpdateDialogActivity"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+            android:theme="@android:style/Theme.Translucent.NoTitleBar">
         </activity>
-
 
     </application>
 

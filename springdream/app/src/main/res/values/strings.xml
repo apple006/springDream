@@ -6,7 +6,6 @@
     <string name="item3">item3</string>
     <string name="item4">item4</string>
 
-
     <string name="right_item1">right_item1</string>
     <string name="right_item2">right_item2</string>
     <string name="right_item3">right_item3</string>
@@ -16,7 +15,6 @@
     <string name="right_item6">right_item6</string>
     <string name="right_item7">right_item7</string>
     <string name="right_item8">right_item8</string>
-
 
     <string name="category_dreams">分类梦境</string>
     <string name="category_persons">人物篇</string>

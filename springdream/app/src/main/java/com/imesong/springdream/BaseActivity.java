@@ -1,8 +1,8 @@
 package com.imesong.springdream;
 
-import android.support.v7.app.AppCompatActivity;
-
 import com.imesong.springdream.utils.EventAgentUtil;
+
+import android.support.v7.app.AppCompatActivity;
 
 /**
  *

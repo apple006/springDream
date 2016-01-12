@@ -44,7 +44,7 @@ public class AssetsDatabaseManager {
      *
      * @param dbfile, the assets file which will be opened for a database
      */
-    public void initLoacalDatabase(String dbfile) throws NoSuchFieldException,IOException {
+    public void initLoacalDatabase(String dbfile) throws NoSuchFieldException, IOException {
         if (context == null) {
             return;
         }
@@ -54,7 +54,8 @@ public class AssetsDatabaseManager {
 
         File file = new File(sfile);
         SharedPreferences dbs = context.getSharedPreferences(AssetsDatabaseManager.class.toString(), 0);
-        boolean flag = dbs.getBoolean(dbfile, false); // Get Database file flag, if true means this database file was copied and valid
+        boolean flag = dbs.getBoolean(dbfile, false); // Get Database file flag, if true means this
+        // database file was copied and valid
         if (!flag || !file.exists()) {
             file = new File(spath);
             if (!file.exists() && !file.mkdirs()) {
@@ -107,6 +108,4 @@ public class AssetsDatabaseManager {
         }
         return true;
     }
-
-
 }

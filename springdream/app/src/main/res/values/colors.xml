@@ -4,13 +4,11 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
 
-
     <color name="tab_strip_bg_selected">#895b1d</color>
     <color name="tab_strip_text_selected">@android:color/white</color>
 
     <color name="tab_strip_bg_normal">#eddbab</color>
     <color name="tab_strip_text_normal">#8b5a19</color>
     <color name="tab_strip_divider_color">#b99d79</color>
-
 
 </resources>

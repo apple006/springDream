@@ -1,15 +1,14 @@
 package com.imesong.springdream;
 
-import android.app.Application;
-
 import com.imesong.springdream.utils.FlashFlowUtil;
 import com.squareup.leakcanary.LeakCanary;
+
+import android.app.Application;
 
 import cn.zhaiyifan.init.Init;
 
 /**
- * MainApplication for SpringDream
- * block task should not do here
+ * MainApplication for SpringDream block task should not do here
  */
 public class SpringApplication extends Application {
 
@@ -17,9 +16,10 @@ public class SpringApplication extends Application {
     public void onCreate() {
         super.onCreate();
         initThirdLib();
-        FlashFlowUtil.startFlow(this,"initDataFlow");
+        FlashFlowUtil.startFlow(this, "initDataFlow");
     }
-    private void initThirdLib(){
+
+    private void initThirdLib() {
         LeakCanary.install(this);
         Init.init(this);
     }

@@ -8,24 +8,20 @@ import android.content.Context;
 public class DBHelper {
     public static DBHelper instance = null;
 
-    public static DBHelper getInstance(Context context){
-        if (instance == null){
+    private DBHelper(Context context) {
+        //        DaoMaster.DevOpenHelper helper = new DaoMaster.DevOpenHelper(context, DB_NAME, null);
+        //
+        //        DaoMaster daoMaster = new DaoMaster(helper.getWritableDatabase());
+        //
+        //        daoSession = daoMaster.newSession();
+        //        asyncSession = daoSession.startAsyncSession();
+    }
+
+    public static DBHelper getInstance(Context context) {
+        if (instance == null) {
             instance = new DBHelper(context);
         }
 
-        return  instance;
+        return instance;
     }
-
-
-
-    private DBHelper(Context context){
-//        DaoMaster.DevOpenHelper helper = new DaoMaster.DevOpenHelper(context, DB_NAME, null);
-//
-//        DaoMaster daoMaster = new DaoMaster(helper.getWritableDatabase());
-//
-//        daoSession = daoMaster.newSession();
-//        asyncSession = daoSession.startAsyncSession();
-    }
-
-
 }
