@@ -1,1 +1,1 @@
-include ':app', ':greendaogenerate'
+include ':app', ':greendaogenerate', ":persistentsearch"

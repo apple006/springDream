@@ -12,6 +12,7 @@
         android:id="@+id/searchbox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/tab_strip_bg_normal"
         />
 
     <include layout="@layout/category_content_fragment"></include>
