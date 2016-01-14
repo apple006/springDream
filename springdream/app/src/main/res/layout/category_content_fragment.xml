@@ -5,10 +5,15 @@
     android:layout_height="match_parent"
     android:layout_marginTop="@dimen/search_box_height">
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/tab_strip_line_hegiht"
+        android:background="@color/tab_strip_bg_selected"></View>
     <com.flyco.tablayout.SlidingTabLayout
         android:id="@+id/tab_strip"
         android:layout_width="match_parent"
         android:layout_height="@dimen/tab_strip_height"
+        android:layout_marginTop="@dimen/tab_strip_line_hegiht"
         android:background="@color/tab_strip_bg_normal"
 
         tl:tl_divider_color="@color/tab_strip_bg_selected"
