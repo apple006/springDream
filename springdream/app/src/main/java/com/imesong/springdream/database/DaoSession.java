@@ -13,7 +13,7 @@ import de.greenrobot.dao.internal.DaoConfig;
 
 /**
  * {@inheritDoc}
- *
+ * 
  * @see de.greenrobot.dao.AbstractDaoSession
  */
 public class DaoSession extends AbstractDaoSession {
@@ -24,8 +24,7 @@ public class DaoSession extends AbstractDaoSession {
     private final CategoryDao categoryDao;
     private final DreamDao dreamDao;
 
-    public DaoSession(SQLiteDatabase db, IdentityScopeType type, Map<Class<? extends AbstractDao<?, ?>>,
-            DaoConfig>
+    public DaoSession(SQLiteDatabase db, IdentityScopeType type, Map<Class<? extends AbstractDao<?, ?>>, DaoConfig>
             daoConfigMap) {
         super(db);
 
@@ -54,4 +53,5 @@ public class DaoSession extends AbstractDaoSession {
     public DreamDao getDreamDao() {
         return dreamDao;
     }
+
 }

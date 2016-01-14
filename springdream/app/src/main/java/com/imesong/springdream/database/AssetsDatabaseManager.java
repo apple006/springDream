@@ -15,9 +15,10 @@ import java.io.OutputStream;
  * 读取assets 数据库工具类
  */
 public class AssetsDatabaseManager {
-    public static final String DB_NAME = "zhgjm.sqlite";
+    public static final String DB_FILE_NAME = "zhgjm.sqlite";
+    public static final String DB_NAME = "zhgjm";
     private static String tag = "AssetsDatabaseManager"; // for LogCat
-    private static String databasepath = "/data/data/%s/database"; // %s is packageName
+    private static String databasepath = "/data/data/%s/databases"; // %s is packageName
     // Singleton Pattern
     private static AssetsDatabaseManager mInstance = null;
     // Context of application
@@ -76,7 +77,7 @@ public class AssetsDatabaseManager {
     }
 
     private String getDatabaseFile(String dbfile) {
-        return getDatabaseFilepath() + "/" + dbfile;
+        return getDatabaseFilepath() + "/" + "zhgjm";
     }
 
     private boolean copyAssetsToFilesystem(String assetsSrc, String des) {

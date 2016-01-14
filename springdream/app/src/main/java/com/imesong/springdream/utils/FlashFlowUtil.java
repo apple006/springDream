@@ -1,9 +1,9 @@
 package com.imesong.springdream.utils;
 
-import com.imesong.springdream.database.AssetsDatabaseManager;
-
 import android.content.Context;
 import android.util.Log;
+
+import com.imesong.springdream.database.AssetsDatabaseManager;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -40,7 +40,7 @@ public class FlashFlowUtil {
 
                 try {
                     AssetsDatabaseManager.getInstance(context).initLoacalDatabase(AssetsDatabaseManager
-                            .DB_NAME);
+                            .DB_FILE_NAME);
                 } catch (NoSuchFieldException e) {
                     e.printStackTrace();
                     EventAgentUtil.reportError(context, e);

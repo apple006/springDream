@@ -31,14 +31,12 @@ public class DaoMaster extends AbstractDaoMaster {
         DreamDao.createTable(db, ifNotExists);
     }
 
-    /**
-     * Drops underlying database table using DAOs.
-     */
+    /** Drops underlying database table using DAOs. */
     public static void dropAllTables(SQLiteDatabase db, boolean ifExists) {
         CategoryDao.dropTable(db, ifExists);
         DreamDao.dropTable(db, ifExists);
     }
-
+    
     public DaoSession newSession() {
         return new DaoSession(db, IdentityScopeType.Session, daoConfigMap);
     }
@@ -46,7 +44,7 @@ public class DaoMaster extends AbstractDaoMaster {
     public DaoSession newSession(IdentityScopeType type) {
         return new DaoSession(db, type, daoConfigMap);
     }
-
+    
     public static abstract class OpenHelper extends SQLiteOpenHelper {
 
         public OpenHelper(Context context, String name, CursorFactory factory) {
@@ -56,13 +54,12 @@ public class DaoMaster extends AbstractDaoMaster {
         @Override
         public void onCreate(SQLiteDatabase db) {
             Log.i("greenDAO", "Creating tables for schema version " + SCHEMA_VERSION);
-            createAllTables(db, false);
+            //默认为false,修改为 true
+            createAllTables(db, true);
         }
     }
 
-    /**
-     * WARNING: Drops all table on Upgrade! Use only during development.
-     */
+    /** WARNING: Drops all table on Upgrade! Use only during development. */
     public static class DevOpenHelper extends OpenHelper {
         public DevOpenHelper(Context context, String name, CursorFactory factory) {
             super(context, name, factory);
@@ -70,10 +67,10 @@ public class DaoMaster extends AbstractDaoMaster {
 
         @Override
         public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-            Log.i("greenDAO", "Upgrading schema from version " + oldVersion + " to " + newVersion + " by " +
-                    "dropping all tables");
+            Log.i("greenDAO", "Upgrading schema from version " + oldVersion + " to " + newVersion + " by dropping all tables");
             dropAllTables(db, true);
             onCreate(db);
         }
     }
+    
 }

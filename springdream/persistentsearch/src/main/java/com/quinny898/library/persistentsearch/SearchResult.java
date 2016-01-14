@@ -7,6 +7,9 @@ public class SearchResult {
     public Drawable icon;
     public int viewType = 0;
 
+    public SearchResult() {
+    }
+
     /**
      * Create a search result with text and an icon
      */

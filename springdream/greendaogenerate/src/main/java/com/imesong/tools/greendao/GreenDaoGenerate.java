@@ -18,26 +18,28 @@ public class GreenDaoGenerate {
     }
     private static void createCategoryTable(Schema schema){
         Entity category = schema.addEntity("Category");
-        category.addIdProperty();
-        category.addStringProperty("name").notNull();
-        category.addStringProperty("parent");
-        category.addStringProperty("pinxin");
-        category.addShortProperty("sequence");
-        category.addStringProperty("del");
+        category.setTableName("category");
+        category.addIdProperty().autoincrement().notNull().columnName("id");
+        category.addStringProperty("name").notNull().columnName("name");
+        category.addIntProperty("parent").columnName("parent");
+        category.addStringProperty("pinxin").columnName("pinxin");
+        category.addIntProperty("sequence").columnName("sequence");
+        category.addBooleanProperty("del").columnName("del");
     }
 
     private static void createDreamTable(Schema schema){
         Entity dream = schema.addEntity("Dream");
-        dream.addIdProperty();
-        dream.addStringProperty("category1");
-        dream.addStringProperty("category2");
+        dream.setTableName("dream");
+        dream.addIdProperty().autoincrement().notNull().columnName("id");
+        dream.addIntProperty("category1").columnName("category1");
+        dream.addIntProperty("category2").columnName("category2");
 
         dream.addStringProperty("name").notNull();
         dream.addStringProperty("content").notNull();
-        dream.addStringProperty("del");
-        dream.addStringProperty("recommend");
-        dream.addStringProperty("sequence");
-        dream.addStringProperty("hit");
+        dream.addBooleanProperty("del");
+        dream.addBooleanProperty("recommend");
+        dream.addIntProperty("sequence");
+        dream.addIntProperty("hit");
         dream.addIntProperty("is_long");
 
     }

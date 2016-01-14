@@ -1,5 +1,12 @@
 package com.imesong.springdream;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.speech.RecognizerIntent;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.view.ViewPager;
+import android.util.Log;
+
 import com.flyco.tablayout.SlidingTabLayout;
 import com.imesong.springdream.utils.UpdateUtil;
 import com.mikepenz.fontawesome_typeface_library.FontAwesome;
@@ -13,17 +20,6 @@ import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
 import com.mikepenz.materialdrawer.model.SectionDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IProfile;
 import com.quinny898.library.persistentsearch.SearchBox;
-import com.quinny898.library.persistentsearch.SearchResult;
-
-import android.content.Intent;
-import android.os.Bundle;
-import android.speech.RecognizerIntent;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.view.ViewPager;
-import android.util.Log;
-import android.view.MenuItem;
-import android.widget.PopupMenu;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -105,7 +101,7 @@ public class MainActivity extends BaseActivity {
         mSearchBox.enableVoiceRecognition(this);
 
         mSearchBox.findViewById(R.id.search_root).setBackgroundColor(getResources().getColor(R.color
-                .tab_strip_bg_normal, getTheme()));
+                .tab_strip_bg_normal));
         mSearchBox.setMenuListener(new SearchBox.MenuListener() {
             @Override
             public void onMenuClick() {
@@ -116,56 +112,7 @@ public class MainActivity extends BaseActivity {
                 }
             }
         });
-        mSearchBox.setSearchListener(new SearchBox.SearchListener() {
-
-            @Override
-            public void onSearchOpened() {
-                //Use this to tint the screen
-                Log.d(TAG, "onSearchOpened");
-            }
-
-            @Override
-            public void onSearchClosed() {
-                //Use this to un-tint the screen
-                Log.d(TAG, "onSearchClosed");
-            }
-
-            @Override
-            public void onSearchTermChanged(String term) {
-                //React to the search term changing
-                //Called after it has updated results
-                Log.d(TAG, "onSearchTermChanged");
-            }
-
-            @Override
-            public void onSearch(String searchTerm) {
-                Toast.makeText(MainActivity.this, searchTerm + " Searched", Toast.LENGTH_LONG).show();
-            }
-
-            @Override
-            public void onResultClick(SearchResult result) {
-                //React to a result being clicked
-                Log.d(TAG, "onResultClick");
-            }
-
-            @Override
-            public void onSearchCleared() {
-                //Called when the clear button is clicked
-                Log.d(TAG, "onSearchCleared");
-            }
-        });
-        mSearchBox.setOverflowMenu(R.menu.menu_main);
-        mSearchBox.setOverflowMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                switch (item.getItemId()) {
-                    case R.id.action_settings:
-                        Toast.makeText(MainActivity.this, "Clicked!", Toast.LENGTH_SHORT).show();
-                        return true;
-                }
-                return false;
-            }
-        });
+        mSearchBox.setSearchListener(new SearchBoxListenerControl(this, mSearchBox));
     }
 
 
