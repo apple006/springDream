@@ -1,13 +1,22 @@
 package com.imesong.springdream;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.speech.RecognizerIntent;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
+import android.text.TextUtils;
 import android.util.Log;
+import android.view.MenuItem;
+import android.widget.Toast;
 
+import com.arlib.floatingsearchview.FloatingSearchView;
+import com.arlib.floatingsearchview.suggestions.SearchSuggestionsAdapter;
+import com.arlib.floatingsearchview.suggestions.model.SearchSuggestion;
+import com.arlib.floatingsearchview.util.view.BodyTextView;
+import com.arlib.floatingsearchview.util.view.IconImageView;
 import com.flyco.tablayout.SlidingTabLayout;
+import com.imesong.springdream.database.DBHelper;
+import com.imesong.springdream.database.Dream;
+import com.imesong.springdream.database.DreamDao;
 import com.imesong.springdream.utils.UpdateUtil;
 import com.mikepenz.fontawesome_typeface_library.FontAwesome;
 import com.mikepenz.materialdrawer.AccountHeader;
@@ -19,13 +28,15 @@ import com.mikepenz.materialdrawer.model.ProfileDrawerItem;
 import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
 import com.mikepenz.materialdrawer.model.SectionDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IProfile;
-import com.quinny898.library.persistentsearch.SearchBox;
 
-import java.util.ArrayList;
+import java.util.List;
+
+import de.greenrobot.dao.query.QueryBuilder;
 
 public class MainActivity extends BaseActivity {
 
     private static final String TAG = "MainActivity";
+    private static final int SEARCH_RESULT_LIMIT = 5;
     public static int PROFILE_SETTING = 1;
     private static String[] categoryDreams;
     private ViewPager viewPager;
@@ -33,7 +44,8 @@ public class MainActivity extends BaseActivity {
     private FragmentManager fragmentManager;
     private AccountHeader headerResult = null;
     private Drawer mLeftDrawer;
-    private SearchBox mSearchBox;
+    private FloatingSearchView mSearchView;
+    private List<Dream> searchResult = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +58,6 @@ public class MainActivity extends BaseActivity {
 
         initSearchBox();
     }
-
 
     private void initDrawer(Bundle savedInstanceState) {
         final IProfile profile3 = new ProfileDrawerItem().withName("imesong").withEmail("imesong@126.com")
@@ -82,7 +93,6 @@ public class MainActivity extends BaseActivity {
                 .build();
     }
 
-
     private void initViewPager() {
         categoryDreams = getResources().getStringArray(R.array.category_dreams);
         fragmentManager = getSupportFragmentManager();
@@ -96,43 +106,92 @@ public class MainActivity extends BaseActivity {
     }
 
     private void initSearchBox() {
-        mSearchBox = (SearchBox) findViewById(R.id.searchbox);
+        mSearchView = (FloatingSearchView) findViewById(R.id.floating_search_view);
 
-        mSearchBox.enableVoiceRecognition(this);
-
-        mSearchBox.findViewById(R.id.search_root).setBackgroundColor(getResources().getColor(R.color
-                .tab_strip_bg_normal));
-        mSearchBox.setMenuListener(new SearchBox.MenuListener() {
+        mSearchView.setOnQueryChangeListener(new FloatingSearchView.OnQueryChangeListener() {
             @Override
-            public void onMenuClick() {
-                if (mLeftDrawer.isDrawerOpen()) {
-                    mLeftDrawer.closeDrawer();
+            public void onSearchTextChanged(String oldQuery, String newQuery) {
+                if (!TextUtils.isEmpty(oldQuery) && TextUtils.isEmpty(newQuery)) {
+                    mSearchView.clearSuggestions();
                 } else {
-                    mLeftDrawer.openDrawer();
+                    mSearchView.showProgress();
+                    QueryBuilder queryBuilder = DBHelper.getInstance(MainActivity.this).getDreamDao().queryBuilder().limit(SEARCH_RESULT_LIMIT);
+                    queryBuilder.where(DreamDao.Properties.Name.like("%" + newQuery + "%"));
+                    searchResult = queryBuilder.list();
+                    mSearchView.swapSuggestions(searchResult);
+                    mSearchView.hideProgress();
                 }
             }
         });
-        mSearchBox.setSearchListener(new SearchBoxListenerControl(this, mSearchBox));
-    }
+
+        mSearchView.setOnSearchListener(new FloatingSearchView.OnSearchListener() {
+            @Override
+            public void onSuggestionClicked(SearchSuggestion searchSuggestion) {
+                Log.d(TAG, "onSuggestionClicked：" + searchSuggestion.getBody());
+            }
+
+            @Override
+            public void onSearchAction() {
+                Log.d(TAG, "onSearchAction()");
+            }
+        });
 
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        Log.d(TAG, "requestCode==" + requestCode + "\t resultCode==" + resultCode);
-        if (requestCode == 1234 && resultCode == RESULT_OK) {
-            ArrayList<String> matches = data
-                    .getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-            mSearchBox.populateEditText(matches.get(0));
-        }
-        super.onActivityResult(requestCode, resultCode, data);
+        mSearchView.setOnFocusChangeListener(new FloatingSearchView.OnFocusChangeListener() {
+            @Override
+            public void onFocus() {
+                Log.d(TAG, "onFocus()");
+            }
+
+            @Override
+            public void onFocusCleared() {
+                Log.d(TAG, "onFocusCleared()");
+            }
+        });
+
+        mSearchView.setOnMenuItemClickListener(new FloatingSearchView.OnMenuItemClickListener() {
+            @Override
+            public void onActionMenuItemSelected(MenuItem item) {
+                //just print action
+                Toast.makeText(getApplicationContext(), item.getTitle(),
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
+        //use this listener to listen to menu clicks when app:floatingSearch_leftAction="showHamburger"
+        mSearchView.setOnLeftMenuClickListener(new FloatingSearchView.OnLeftMenuClickListener() {
+            @Override
+            public void onMenuOpened() {
+                mLeftDrawer.openDrawer();
+                Log.d(TAG, "onMenuOpened()");
+
+            }
+
+            @Override
+            public void onMenuClosed() {
+                mLeftDrawer.closeDrawer();
+                Log.d(TAG, "onMenuClosed()");
+            }
+        });
+
+
+        mSearchView.setOnHomeActionClickListener(new FloatingSearchView.OnHomeActionClickListener() {
+            @Override
+            public void onHomeClicked() {
+                Log.d(TAG, "onHomeClicked()");
+            }
+        });
+
+        mSearchView.setOnBindSuggestionCallback(new SearchSuggestionsAdapter.OnBindSuggestionCallback() {
+            @Override
+            public void onBindSuggestion(IconImageView leftIcon, BodyTextView bodyText, SearchSuggestion item, int itemPosition) {
+                Log.d(TAG, "onBindSuggestion()  item =" + item.getBody() + "\t itemPosition:" + itemPosition + "\t bodyText:" + bodyText.getText());
+            }
+        });
     }
+
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        if (mSearchBox.isShown()) {
-            mSearchBox.clearAnimation();
-            return;
-        }
     }
 }

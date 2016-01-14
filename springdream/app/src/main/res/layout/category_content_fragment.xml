@@ -3,7 +3,8 @@
     android:id="@+id/content_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginTop="@dimen/search_box_height">
+    android:layout_marginTop="@dimen/search_box_height"
+    android:background="@color/md_green_800">
 
     <com.flyco.tablayout.SlidingTabLayout
         android:id="@+id/tab_strip"
@@ -27,9 +28,6 @@
 
         tl:tl_textUnselectColor="@color/tab_strip_text_normal"
         tl:tl_textsize="@dimen/tab_strip_text_size"
-        tl:tl_underline_color="@color/tab_strip_bg_normal"
-        tl:tl_underline_height="@dimen/tab_strip_line_hegiht"
-
         ></com.flyco.tablayout.SlidingTabLayout>
 
     <android.support.v4.view.ViewPager

@@ -1,1 +1,1 @@
-include ':app', ':greendaogenerate', ":persistentsearch"
+include ':app', ':greendaogenerate', ":persistentsearch", ":floatingsearchview"

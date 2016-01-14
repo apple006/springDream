@@ -91,6 +91,7 @@ dependencies {
     //app init task,not the latest version
     //    compile 'cn.zhaiyifan:init:1.0.1'
     compile(name: 'flash_init-release', ext: 'aar')
-    compile project(':persistentsearch')
-    compile 'com.github.arimorty:floatingsearchview:1.1.2'
+//    compile project(':persistentsearch')
+//    compile 'com.github.arimorty:floatingsearchview:1.1.2'
+    compile project(':floatingsearchview')
 }

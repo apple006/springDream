@@ -2,7 +2,7 @@
 <resources>
     <color name="colorPrimary">#eddbab</color>
     <color name="colorPrimaryDark">#8b5a19</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorAccent">#b99d79</color>
 
     <color name="tab_strip_bg_selected">#895b1d</color>
     <color name="tab_strip_text_selected">@android:color/white</color>

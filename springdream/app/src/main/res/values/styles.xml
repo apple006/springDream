@@ -14,4 +14,16 @@
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
 
+
+    <style name="SearchView">
+        <item name="floatingSearch_backgroundColor">@color/tab_strip_bg_normal</item>
+        <item name="floatingSearch_viewTextColor">@color/tab_strip_text_normal</item>
+        <item name="floatingSearch_hintTextColor">@color/tab_strip_text_normal</item>
+        <item name="floatingSearch_dividerColor">@color/tab_strip_divider_color</item>
+        <item name="floatingSearch_clearBtnColor">@color/md_red_900</item>
+        <item name="floatingSearch_leftActionColor">@color/colorPrimaryDark</item>
+        <item name="floatingSearch_menuItemIconColor">@color/md_blue_500</item>
+        <item name="floatingSearch_suggestionRightIconColor">@color/colorAccent</item>
+        <item name="floatingSearch_actionMenuOverflowColor">@color/md_black_1000</item>
+    </style>
 </resources>
