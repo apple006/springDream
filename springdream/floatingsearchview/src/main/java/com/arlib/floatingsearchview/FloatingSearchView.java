@@ -39,7 +39,6 @@ import android.support.v4.view.ViewCompat;
 import android.support.v4.view.ViewPropertyAnimatorListenerAdapter;
 import android.support.v7.graphics.drawable.DrawerArrowDrawable;
 import android.support.v7.view.menu.MenuBuilder;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
@@ -120,7 +119,7 @@ public class FloatingSearchView extends FrameLayout {
     private Drawable mBackgroundDrawable;
     private boolean mDismissOnOutsideTouch = true;
 
-    private CardView mQuerySection;
+    private FrameLayout mQuerySection;
     private OnSearchListener mSearchListener;
     private boolean mIsFocused;
     private OnFocusChangeListener mFocusChangeListener;
@@ -185,7 +184,7 @@ public class FloatingSearchView extends FrameLayout {
 
         mBackgroundDrawable = new ColorDrawable(Color.BLACK);
 
-        mQuerySection = (CardView) findViewById(R.id.search_query_section);
+        mQuerySection = (FrameLayout) findViewById(R.id.search_query_section);
         mClearButton = (ImageView) findViewById(R.id.clear_btn);
         mSearchInput = (EditText) findViewById(R.id.search_bar_text);
         mSearchInputParent = findViewById(R.id.search_input_parent);
@@ -588,7 +587,7 @@ public class FloatingSearchView extends FrameLayout {
     public void setBackgroundColor(int color) {
 
         if (mQuerySection != null && mSuggestionsList != null) {
-            mQuerySection.setCardBackgroundColor(color);
+            mQuerySection.setBackgroundColor(color);
             mSuggestionsList.setBackgroundColor(color);
         }
     }
