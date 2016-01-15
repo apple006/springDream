@@ -6,6 +6,7 @@ import android.support.v4.view.ViewPager;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import com.arlib.floatingsearchview.FloatingSearchView;
@@ -90,7 +91,26 @@ public class MainActivity extends BaseActivity {
                                 .faw_question)
                 )
                 .withSavedInstance(savedInstanceState)
+                .withOnDrawerListener(new Drawer.OnDrawerListener() {
+                    @Override
+                    public void onDrawerOpened(View drawerView) {
+                        mSearchView.openMenu(true);
+                    }
+
+                    @Override
+                    public void onDrawerClosed(View drawerView) {
+                        mSearchView.closeMenu(true);
+
+                    }
+
+                    @Override
+                    public void onDrawerSlide(View drawerView, float slideOffset) {
+                        //TODO 添加 左侧icon 动画
+                    }
+                })
                 .build();
+
+
     }
 
     private void initViewPager() {
@@ -162,6 +182,7 @@ public class MainActivity extends BaseActivity {
             @Override
             public void onMenuOpened() {
                 mLeftDrawer.openDrawer();
+                mSearchView.openMenu(true);
                 Log.d(TAG, "onMenuOpened()");
 
             }
@@ -170,6 +191,7 @@ public class MainActivity extends BaseActivity {
             public void onMenuClosed() {
                 mLeftDrawer.closeDrawer();
                 Log.d(TAG, "onMenuClosed()");
+                mSearchView.closeMenu(true);
             }
         });
 
