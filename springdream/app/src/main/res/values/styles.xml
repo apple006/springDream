@@ -26,4 +26,10 @@
         <item name="floatingSearch_suggestionRightIconColor">@color/colorAccent</item>
         <item name="floatingSearch_actionMenuOverflowColor">@color/md_black_1000</item>
     </style>
+
+    <style name="Toolbar" parent="Theme.AppCompat">
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/accent</item>
+    </style>
 </resources>

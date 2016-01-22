@@ -1,20 +1,13 @@
 package com.imesong.springdream;
 
-import android.os.Bundle;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.view.ViewPager;
-import android.text.TextUtils;
-import android.util.Log;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.Toast;
-
 import com.arlib.floatingsearchview.FloatingSearchView;
 import com.arlib.floatingsearchview.suggestions.SearchSuggestionsAdapter;
 import com.arlib.floatingsearchview.suggestions.model.SearchSuggestion;
 import com.arlib.floatingsearchview.util.view.BodyTextView;
 import com.arlib.floatingsearchview.util.view.IconImageView;
 import com.flyco.tablayout.SlidingTabLayout;
+import com.github.ksoichiro.android.observablescrollview.ObservableScrollViewCallbacks;
+import com.github.ksoichiro.android.observablescrollview.ScrollState;
 import com.imesong.springdream.database.DBHelper;
 import com.imesong.springdream.database.Dream;
 import com.imesong.springdream.database.DreamDao;
@@ -30,11 +23,20 @@ import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
 import com.mikepenz.materialdrawer.model.SectionDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IProfile;
 
+import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.view.ViewPager;
+import android.text.TextUtils;
+import android.util.Log;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.Toast;
+
 import java.util.List;
 
 import de.greenrobot.dao.query.QueryBuilder;
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity implements ObservableScrollViewCallbacks {
 
     private static final String TAG = "MainActivity";
     private static final int SEARCH_RESULT_LIMIT = 5;
@@ -215,5 +217,21 @@ public class MainActivity extends BaseActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+    }
+
+
+    @Override
+    public void onScrollChanged(int scrollY, boolean firstScroll, boolean dragging) {
+
+    }
+
+    @Override
+    public void onDownMotionEvent() {
+
+    }
+
+    @Override
+    public void onUpOrCancelMotionEvent(ScrollState scrollState) {
+
     }
 }
